@@ -36,10 +36,8 @@ var app = new Vue({
         this.cantidad = "";
         return false;
       }
-      if (this.cantidad > this.bodegaUno) {
-        alert(
-          `Es imposible vender mas de la cantidad con la que cuenta la bodega #1:  ${this.bodegaUno} Kilos`
-        );
+      if (this.cantidad <= 0) {
+        alert("Debe ingresar un número positivo");
         return false;
       }
 
@@ -48,46 +46,54 @@ var app = new Vue({
         return false;
       }
 
-      if (this.bodegaUno <= 50000) {
+      if (this.bodegaUno <= 10000) {
+        this.msBd = true;
+        this.messageUno =
+          "La bodega #1 cuenta con solo el 10% de la cantidad de arroz";
+      } else if (this.bodegaUno <= 50000) {
         this.msBd = true;
         this.messageUno =
           "La bodega #1 cuenta con solo el 50% de la cantidad de arroz";
       }
 
-      if (this.bodegaUno <= 10000) {
-        this.msBd = true;
-        this.messageUno =
-          "La bodega #1 cuenta con solo el 10% de la cantidad de arroz";
-      }
-
       if (this.selected1 === "kg") {
+        if (this.cantidad > this.bodegaUno) {
+          alert(`La cantidad maxima disponible es ${this.bodegaUno} Kilos`);
+          return false;
+        }
         this.bodegaUno = this.bodegaUno - this.cantidad;
         this.contarCantidadBod1 += this.cantidad;
         localStorage.setItem("bodegaUno", this.bodegaUno);
         localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
-        console.log(this.bodegaUno);
-        console.log(this.contarCantidadBod1);
-      }
-
-      if (this.selected1 === "lb") {
+      } else if (this.selected1 === "lb") {
         let convert = this.cantidad / 2;
+        let bodegaUnoLibras = this.bodegaUno * 2;
+        if (convert > bodegaUnoLibras) {
+          alert(`La cantidad maxima disponible es ${bodegaUnoLibras} Libras`);
+          return false;
+        }
         this.bodegaUno = this.bodegaUno - convert;
         this.contarCantidadBod1 += convert;
         localStorage.setItem("bodegaUno", this.bodegaUno);
         localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
-        console.log(this.bodegaUno);
       }
 
       if (this.selected1 === "g") {
-        let convert = this.cantidad / 1000;
-        this.bodegaUno = this.bodegaUno - convert;
-        this.contarCantidadBod1 += convert;
-        localStorage.setItem("bodegaUno", this.bodegaUno);
-        localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
-        console.log(this.bodegaUno);
+        let convert = parseFloat(this.cantidad / 1000);
+        let bodegaUnoGramos = this.bodegaUno * 1000;
+        if (convert > bodegaUnoGramos) {
+          alert(`La cantidad maxima disponible es ${bodegaUnoGramos} gramos`);
+          return false;
+        } else {
+          this.bodegaUno = this.bodegaUno - convert;
+          this.contarCantidadBod1 += convert;
+          localStorage.setItem("bodegaUno", this.bodegaUno);
+          localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
+        }
       }
     },
 
+    // bodega 2
     verifyBodegaDos() {
       this.cantidad2 = parseFloat(this.cantidad2);
       if (isNaN(this.cantidad2)) {
@@ -95,10 +101,8 @@ var app = new Vue({
         this.cantidad2 = "";
         return false;
       }
-      if (this.cantidad2 > this.bodegaDos) {
-        alert(
-          `Es imposible vender mas de la cantidad con la que cuenta la bodega #2  ${this.bodegaDos} Kilos`
-        );
+      if (this.cantidad2 <= 0) {
+        alert("Debe ingresar un número positivo");
         return false;
       }
 
@@ -107,27 +111,32 @@ var app = new Vue({
         return false;
       }
 
-      if (this.bodegaDos <= 115000) {
+      if (this.bodegaDos <= 23000) {
+        this.msBd2 = true;
+        this.messageDos =
+          "La bodega #2 cuenta con solo el 10% de la cantidad de arroz";
+      } else if (this.bodegaDos <= 115000) {
         this.msBd2 = true;
         this.messageDos =
           "La bodega #2 cuenta con solo el 50% de la cantidad de arroz";
       }
 
-      if (this.bodegaDos <= 23000) {
-        this.msBd2 = true;
-        this.messageDos =
-          "La bodega #2 cuenta con solo el 10% de la cantidad de arroz";
-      }
-
       if (this.selected2 === "kg") {
+        if (this.cantidad2 > this.bodegaDos) {
+          alert(`La cantidad maxima disponible es ${this.bodegaDos} Kilos`);
+          return false;
+        }
         this.bodegaDos = this.bodegaDos - this.cantidad2;
         this.contarCantidadBod2 += this.cantidad2;
         localStorage.setItem("bodegaDos", this.bodegaDos);
         localStorage.setItem("totalVentaDos", this.contarCantidadBod2);
-      }
-
-      if (this.selected2 === "lb") {
+      } else if (this.selected2 === "lb") {
         let convert = this.cantidad2 / 2;
+        let bodegaDosLibras = this.bodegaDos * 2;
+        if (convert > bodegaDosLibras) {
+          alert(`La cantidad maxima disponible es ${bodegaDosLibras} Libras`);
+          return false;
+        }
         this.bodegaDos = this.bodegaDos - convert;
         this.contarCantidadBod2 += convert;
         localStorage.setItem("bodegaDos", this.bodegaDos);
@@ -135,11 +144,17 @@ var app = new Vue({
       }
 
       if (this.selected2 === "g") {
-        let convert = this.cantidad2 / 1000;
-        this.bodegaDos = this.bodegaDos - convert;
-        this.contarCantidadBod2 += convert;
-        localStorage.setItem("bodegaDos", this.bodegaDos);
-        localStorage.setItem("totalVentaDos", this.contarCantidadBod2);
+        let convert = parseFloat(this.cantidad2 / 1000);
+        let bodegaDosGramos = this.bodegaDos * 1000;
+        if (convert > bodegaDosGramos) {
+          alert(`La cantidad maxima disponible es ${bodegaDosGramos} gramos`);
+          return false;
+        } else {
+          this.bodegaDos = this.bodegaDos - convert;
+          this.contarCantidadBod2 += convert;
+          localStorage.setItem("bodegaDos", this.bodegaDos);
+          localStorage.setItem("totalVentaDos", this.contarCantidadBod2);
+        }
       }
     },
 

@@ -23,7 +23,7 @@
 
         <div class="col-md-6">
           <form @submit.prevent="verifyBodegaUno">
-            <legend>Bodega #1</legend>
+            <legend><i class="bi bi-shop-window"></i> Bodega #1</legend>
             <div class="mb-3">
               <label for="cantidad1" class="form-label">Cantidad De Arroz</label>
               <input v-model="cantidad" type="text" id="cantidad1" class="form-control">
@@ -34,18 +34,30 @@
                 <option value="g">Gramos</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary">Comprar Arroz Bodega #1</button>
+            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-bag-fill"></i> Comprar Arroz Bodega
+              #1</button>
           </form>
-          <p v-show="msBd" class="text-white bg-danger rounded-pill my-3 text-center p-2">{{messageUno}}</p>
-          <button @click="showAmount1" class="btn btn-success my-5">Mostrar Total Cantidad Vendida Bodega 1</button>
-          <ul v-show="seeTotal1">
-            <li>Bodega #1 Total Ventas - {{contarCantidadBod1}} Kilos</li>
-          </ul>
+
+          <div v-if="msBd" class="alert alert-danger my-3" role="alert">
+            {{messageUno}}
+          </div>
+
+          <button @click="showAmount1" class="btn btn-outline-success my-5"><i class="bi bi-calculator-fill"></i>
+            Mostrar Total Cantidad Vendida Bodega
+            1</button>
+
+
+          <div class="alert alert-info" role="alert" v-if="seeTotal1">
+            <ul>
+              <li>Bodega #1 Total Ventas - {{contarCantidadBod1}} Kilos</li>
+            </ul>
+          </div>
+
         </div>
 
         <div class="col-md-6">
           <form @submit.prevent="verifyBodegaDos">
-            <legend>Bodega #2</legend>
+            <legend><i class="bi bi-shop-window"></i> Bodega #2</legend>
             <div class="mb-3">
               <label for="cantidad2" class="form-label">Cantidad De Arroz</label>
               <input v-model="cantidad2" type="text" id="cantidad2" class="form-control">
@@ -56,13 +68,25 @@
                 <option value="g">Gramos</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary">Comprar Arroz Bodega #2</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill"></i> Comprar Arroz Bodega
+              #2</button>
           </form>
-          <p v-show="msBd2" class="text-white bg-danger rounded-pill my-3 text-center p-2">{{messageDos}}</p>
-          <button @click="showAmount2" class="btn btn-success my-5">Mostrar Total Cantidad Vendida Bodega 2</button>
-          <ul v-show="seeTotal2">
-            <li>Bodega #2 Total Ventas - {{contarCantidadBod2}} Kilos</li>
-          </ul>
+
+          <div v-if="msBd2" class="alert alert-danger my-3" role="alert">
+            {{messageDos}}
+          </div>
+
+          <button @click="showAmount2" class="btn btn-success my-5"><i class="bi bi-calculator-fill"></i> Mostrar Total
+            Cantidad Vendida Bodega 2</button>
+
+
+
+          <div class="alert alert-info" role="alert" v-if="seeTotal2">
+            <ul>
+              <li>Bodega #2 Total Ventas - {{contarCantidadBod2}} Kilos</li>
+            </ul>
+          </div>
+
         </div>
 
       </div>
