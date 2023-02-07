@@ -16,7 +16,7 @@
 
   <div id="app">
 
-    <h1 class="text-center">{{company}}</h1>
+    <h1 class="text-center  bg-primary text-white p-3 fw-3 mb-5 w-100">{{company}}</h1>
 
     <div class="container-xl">
       <div class="row">
@@ -38,8 +38,12 @@
               #1</button>
           </form>
 
+
           <div v-if="msBd" class="alert alert-danger my-3" role="alert">
             {{messageUno}}
+          </div>
+          <div v-else-if="cantidadArroz1" class="alert alert-primary my-3" role="alert">
+            {{messageBodega1}}
           </div>
 
           <button @click="showAmount1" class="btn btn-outline-success my-5"><i class="bi bi-calculator-fill"></i>
@@ -68,12 +72,16 @@
                 <option value="g">Gramos</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill"></i> Comprar Arroz Bodega
+            <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill" v-show="!cantidadArroz2"></i>
+              Comprar Arroz Bodega
               #2</button>
           </form>
 
           <div v-if="msBd2" class="alert alert-danger my-3" role="alert">
             {{messageDos}}
+          </div>
+          <div v-else-if="cantidadArroz2" class="alert alert-primary my-3" role="alert">
+            {{messageBodega2}}
           </div>
 
           <button @click="showAmount2" class="btn btn-success my-5"><i class="bi bi-calculator-fill"></i> Mostrar Total

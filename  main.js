@@ -26,6 +26,11 @@ var app = new Vue({
 
     contarCantidadBod1: 0,
     contarCantidadBod2: 0,
+
+    cantidadArroz1: false,
+    cantidadArroz2: false,
+    messageBodega1: null,
+    messageBodega2: null,
   },
 
   methods: {
@@ -37,7 +42,7 @@ var app = new Vue({
         return false;
       }
       if (this.cantidad <= 0) {
-        alert("Debe ingresar un número positivo");
+        alert("Debe ingresar un número mayor a cero");
         return false;
       }
 
@@ -46,7 +51,11 @@ var app = new Vue({
         return false;
       }
 
-      if (this.bodegaUno <= 10000) {
+      if (this.bodegaUno <= 0) {
+        this.msBd = false;
+        this.cantidadArroz1 = true;
+        this.messageBodega1 = `La cantidad de arroz en Bodega #1 es 0 Kilos`;
+      } else if (this.bodegaUno <= 10000) {
         this.msBd = true;
         this.messageUno =
           "La bodega #1 cuenta con solo el 10% de la cantidad de arroz";
@@ -102,7 +111,7 @@ var app = new Vue({
         return false;
       }
       if (this.cantidad2 <= 0) {
-        alert("Debe ingresar un número positivo");
+        alert("Debe ingresar un número mayor a cero");
         return false;
       }
 
@@ -111,7 +120,11 @@ var app = new Vue({
         return false;
       }
 
-      if (this.bodegaDos <= 23000) {
+      if (this.bodegaDos <= 0) {
+        this.msBd2 = false;
+        this.cantidadArroz2 = true;
+        this.messageBodega2 = `La cantidad de arroz en Bodega #2 es 0 Kilos`;
+      } else if (this.bodegaDos <= 23000) {
         this.msBd2 = true;
         this.messageDos =
           "La bodega #2 cuenta con solo el 10% de la cantidad de arroz";
