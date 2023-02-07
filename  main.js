@@ -72,7 +72,7 @@ var app = new Vue({
       if (this.selected1 === "lb") {
         let convert = this.cantidad / 2;
         this.bodegaUno = this.bodegaUno - convert;
-        this.contarCantidadBod1 += this.cantidad;
+        this.contarCantidadBod1 += convert;
         localStorage.setItem("bodegaUno", this.bodegaUno);
         localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
         console.log(this.bodegaUno);
@@ -81,7 +81,7 @@ var app = new Vue({
       if (this.selected1 === "g") {
         let convert = this.cantidad / 1000;
         this.bodegaUno = this.bodegaUno - convert;
-        this.contarCantidadBod1 += this.cantidad;
+        this.contarCantidadBod1 += convert;
         localStorage.setItem("bodegaUno", this.bodegaUno);
         localStorage.setItem("totalVentaUno", this.contarCantidadBod1);
         console.log(this.bodegaUno);
@@ -129,7 +129,7 @@ var app = new Vue({
       if (this.selected2 === "lb") {
         let convert = this.cantidad2 / 2;
         this.bodegaDos = this.bodegaDos - convert;
-        this.contarCantidadBod2 += this.cantidad2;
+        this.contarCantidadBod2 += convert;
         localStorage.setItem("bodegaDos", this.bodegaDos);
         localStorage.setItem("totalVentaDos", this.contarCantidadBod2);
       }
@@ -137,7 +137,7 @@ var app = new Vue({
       if (this.selected2 === "g") {
         let convert = this.cantidad2 / 1000;
         this.bodegaDos = this.bodegaDos - convert;
-        this.contarCantidadBod2 += this.cantidad2;
+        this.contarCantidadBod2 += convert;
         localStorage.setItem("bodegaDos", this.bodegaDos);
         localStorage.setItem("totalVentaDos", this.contarCantidadBod2);
       }
