@@ -38,7 +38,7 @@ var app = new Vue({
       }
       if (this.cantidad > this.bodegaUno) {
         alert(
-          `Es imposible vender mas de la cantidad con la que cuenta la bodega #1:  ${this.bodegaUno}`
+          `Es imposible vender mas de la cantidad con la que cuenta la bodega #1:  ${this.bodegaUno} Kilos`
         );
         return false;
       }
@@ -97,7 +97,7 @@ var app = new Vue({
       }
       if (this.cantidad2 > this.bodegaDos) {
         alert(
-          `Es imposible vender mas de la cantidad con la que cuenta la bodega #2  ${this.bodegaDos}`
+          `Es imposible vender mas de la cantidad con la que cuenta la bodega #2  ${this.bodegaDos} Kilos`
         );
         return false;
       }
